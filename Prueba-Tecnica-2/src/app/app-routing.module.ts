@@ -15,7 +15,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
 },{
-  path: 'peliculas',
+  path: 'lista-peliculas',
   component: ListaPeliculasComponent
 },{
   path: 'series',

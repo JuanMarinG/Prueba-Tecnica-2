@@ -1,1 +1,19 @@
-<p>lista-peliculas works!</p>
+
+<div class="row">
+  <div class="col-md-3 col-sm-6 my-4" *ngFor="let peliculas of datos">
+      <div *ngIf="datos!=null; else espera" class="card" style="width: 15rem;">
+        <img src={{peliculas.image}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{peliculas.name}}</h5>
+        </div>
+
+        <div class="card-body">
+          <a href="../detalle-peliculas/" class="btn btn-primary">Show more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #espera>Cargando peliculas...</ng-template>
+
+
