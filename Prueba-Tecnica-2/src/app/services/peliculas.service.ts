@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { peliculas } from '../models/peliculas.model';
+import { movies } from '../models/peliculas.model';
 
 
 @Injectable({
@@ -9,16 +9,16 @@ import { peliculas } from '../models/peliculas.model';
 })
 export class PeliculasService {
 
-  urlApi='https://api.themoviedb.org/3/movie/top_rated?api_key=ae90c3bf26bbc28069a03d09e06bd844&language=en-US&page=1';
+  urlApi='https://api.themoviedb.org/3/';
 
   constructor(private http: HttpClient) { }
 
-getAll(): Observable<peliculas[]> {
-    return this.http.get<peliculas[]>(this.urlApi);
+getAll(): Observable<movies[]> {
+    return this.http.get<movies[]>(this.urlApi);
 }
 
-get(id : any): Observable<peliculas> {
-    return this.http.get<peliculas>(`${this.urlApi}/${id}`);
+get(id : any): Observable<movies> {
+    return this.http.get<movies>(`${this.urlApi}/${id}`);
 }
 
 create(data : any): Observable<any> {
@@ -37,7 +37,7 @@ deleteAll(): Observable<any> {
     return this.http.delete(this.urlApi);
 }
 
-findByName(name : any): Observable<peliculas[]> {
-    return this.http.get<peliculas[]>(`${this.urlApi}?name=${name}`);
+findByName(name : any): Observable<movies[]> {
+    return this.http.get<movies[]>(`${this.urlApi}?name=${name}`);
 }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { token, username } from '../constantes';
+import { LoginService } from '../services/login.service';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -19,27 +20,33 @@ export class LoginComponent implements OnInit {
 
   token:any;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
 
   ngOnInit(): void {
     if(window.sessionStorage.getItem(token))
       this.router.navigate(['/home']);
   }
-  onSubmit(): void{
-    console.log("LOGIN")
-    this.authService.login(this.log.username, this.log.password)
+  loginUser(): void {
+    const data = {
+      username: this.log.username,
+      password: this.log.password,
+      request_token: this.token
+    };
+    this.loginService.signup(data)
       .subscribe(
         response => {
-
-          window.sessionStorage.setItem(token, response.token);
+          this.token = response;
+          console.log(response);
+          window.sessionStorage.setItem(token, response.request_token);
           window.sessionStorage.setItem(username, this.log.username);
-          console.log(window.sessionStorage.getItem(token))
-          console.log(window.sessionStorage.getItem(username));
+          window.location.reload()
         },
         error => {
-          // gestionar error
-          console.log(error)
+          this.log = {
+            username: '',
+            password: ''
+          };
         });
   }
 
