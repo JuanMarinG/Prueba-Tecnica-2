@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { token, username } from '../constantes';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -8,35 +9,33 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./login.component.css']
 })
 
-
 export class LoginComponent implements OnInit {
 
-  form: any = {
-    username: null,
-    password: null
+
+  log: any = {
+    username: '',
+    password: ''
   }
-  username?: string;
-  password?: string;
+
+  token:any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  TOKEN:string = "auth-token"
-  USERNAME:string = "auth-username"
 
   ngOnInit(): void {
-    if(window.sessionStorage.getItem(this.TOKEN))
+    if(window.sessionStorage.getItem(token))
       this.router.navigate(['/home']);
   }
   onSubmit(): void{
     console.log("LOGIN")
-    this.authService.login(this.form.username, this.form.password)
+    this.authService.login(this.log.username, this.log.password)
       .subscribe(
         response => {
 
-          window.sessionStorage.setItem(this.TOKEN, response.token);
-          window.sessionStorage.setItem(this.USERNAME, this.form.username);
-          console.log(window.sessionStorage.getItem(this.TOKEN))
-          console.log(window.sessionStorage.getItem(this.USERNAME));
+          window.sessionStorage.setItem(token, response.token);
+          window.sessionStorage.setItem(username, this.log.username);
+          console.log(window.sessionStorage.getItem(token))
+          console.log(window.sessionStorage.getItem(username));
         },
         error => {
           // gestionar error

@@ -9,6 +9,8 @@
   margin: 0 auto;
   border-radius: 15px;
   text-align: center;
+  width: 400px;
+  height: 500px;
 }
 .login-form-1 h3{
   text-align: center;
