@@ -1,7 +1,7 @@
-export class peliculas {
+export class movies {
   id?: number;
-  titulo?: string;
-  titulo_original?: string;
-  fecha_lanzamiento?: string;
-  poster?:any;
+  title?: string;
+  original_title?: string;
+  release_date?: string;
+  poster_path?:any;
 }

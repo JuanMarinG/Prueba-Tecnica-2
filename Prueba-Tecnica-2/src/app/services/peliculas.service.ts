@@ -9,7 +9,7 @@ import { peliculas } from '../models/peliculas.model';
 })
 export class PeliculasService {
 
-  urlApi='https://api.themoviedb.org/3/movie/76341?api_key=ae90c3bf26bbc28069a03d09e06bd844';
+  urlApi='https://api.themoviedb.org/3/movie/top_rated?api_key=ae90c3bf26bbc28069a03d09e06bd844&language=en-US&page=1';
 
   constructor(private http: HttpClient) { }
 
