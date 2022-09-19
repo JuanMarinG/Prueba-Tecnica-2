@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpHandler, HttpRequest } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { token} from '../constantes';
 
 const TOKEN_HEADER_KEY = 'Authorization'
 const TOKEN:string = "auth-token"

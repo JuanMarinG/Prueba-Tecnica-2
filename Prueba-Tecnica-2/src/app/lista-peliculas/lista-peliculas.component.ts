@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatosService } from '../datos.service';
+import { PeliculasService } from '../services/peliculas.service';
 
 @Component({
   selector: 'app-lista-peliculas',
@@ -10,11 +10,18 @@ export class ListaPeliculasComponent implements OnInit {
 
   datos:any = null;
 
-  constructor(private datosService: DatosService) { }
+  constructor(private peliculasService: PeliculasService) { }
 
   ngOnInit(): void {
-    this.datosService.retonar()
-    .subscribe(result => this.datos=result)
+
   }
 
+  getFilm() {
+    this.peliculasService.getAll().subscribe(
+      response => {
+        this.datos = response.results
+        console.log(response.results)
+      },
+      error => {});
+  }
 }
